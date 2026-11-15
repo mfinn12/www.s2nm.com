@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Contact from '../components/Contact.astro';
+import { clients, principal, site } from '../data/site';
+---
+
+<BaseLayout>
+  <section class="bg-slate-50 dark:bg-slate-900/40">
+    <div class="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
+      <h1 class="font-display text-4xl font-bold tracking-tight text-brand sm:text-6xl dark:text-brand-soft">
+        {site.headline}
+      </h1>
+      <p class="mt-6 max-w-2xl text-xl text-slate-600 dark:text-slate-300">{site.description}</p>
+      <a href="#contact" class="mt-8 inline-block rounded-full bg-brand px-6 py-3 font-semibold text-white hover:opacity-90 dark:bg-brand-soft dark:text-slate-950">
+        Contact us
+      </a>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+    <div class="text-center">
+      <h2 class="font-display text-2xl font-bold sm:text-3xl">Trusted by technology startup leaders</h2>
+      <p class="mt-3 text-slate-600 dark:text-slate-400">
+        Tech startup founders and executives trust signal | noise marketing to help grow their businesses.
+      </p>
+    </div>
+    <ul class="mt-12 grid gap-10 sm:grid-cols-3">
+      {
+        clients.map((c) => (
+          <li class="text-center">
+            <img src={c.logo} alt="" width="120" height="120" class="mx-auto h-28 w-28 rounded-full bg-white object-contain p-3 ring-1 ring-slate-200" loading="lazy" />
+            <h3 class="mt-4 font-display text-lg font-semibold">{c.name}</h3>
+            <p class="mt-1 text-slate-600 dark:text-slate-400">{c.text}</p>
+            {c.note && <p class="mt-1 text-sm text-slate-500">{c.note}</p>}
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="border-t border-slate-200 dark:border-slate-800">
+    <div class="mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 sm:px-6 md:grid-cols-[3fr_2fr]">
+      <div>
+        <h2 class="font-display text-2xl font-bold sm:text-3xl">
+          {principal.name}, <span class="text-slate-500">{principal.role}</span>
+        </h2>
+        <p class="mt-4 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
+          Michael is a technology enthusiast with over 20 years of relevant marketing experience. He leverages his deep
+          <a href="/expertise/" class="text-brand underline dark:text-brand-soft">functional expertise</a> to drive tactical
+          <a href="/activities/" class="text-brand underline dark:text-brand-soft">marketing activities</a> that grow your
+          business. He has been a marketing leader at {principal.employers.join(', ').replace(/, ([^,]*)$/, ' and $1')}.
+        </p>
+      </div>
+      <img
+        src={principal.photo}
+        alt={principal.name}
+        width="480"
+        height="600"
+        class="mx-auto w-full max-w-sm rounded-xl object-cover shadow-md"
+        loading="lazy"
+      />
+    </div>
+  </section>
+
+  <Contact />
+</BaseLayout>

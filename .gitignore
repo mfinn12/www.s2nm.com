@@ -1,0 +1,17 @@
+# build output
+dist/
+.astro/
+
+# dependencies
+node_modules/
+
+# logs and caches
+npm-debug.log*
+.firebase/
+
+# legacy site backup (kept locally, not in the repo)
+backup/
+
+# OS files
+Thumbs.db
+.DS_Store
