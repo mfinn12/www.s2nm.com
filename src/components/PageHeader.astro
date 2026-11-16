@@ -1,14 +1,19 @@
 ---
+import Eyebrow from './Eyebrow.astro';
+
 interface Props {
   title: string;
   intro?: string;
+  /** Small monospace label above the title. Defaults to the title. */
+  label?: string;
 }
-const { title, intro } = Astro.props;
+const { title, intro, label = title } = Astro.props;
 ---
 
-<section class="bg-slate-50 dark:bg-slate-900/40">
-  <div class="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-    <h1 class="font-display text-3xl font-bold tracking-tight text-brand sm:text-4xl dark:text-brand-soft">{title}</h1>
-    {intro && <p class="mt-4 max-w-2xl text-lg text-slate-600 dark:text-slate-300">{intro}</p>}
+<section class="border-b border-line">
+  <div class="mx-auto max-w-6xl px-4 pt-20 pb-16 sm:px-8 sm:pt-24">
+    <Eyebrow>{label}</Eyebrow>
+    <h1 class="mt-4 font-display text-5xl font-semibold tracking-[-0.03em] sm:text-6xl">{title}</h1>
+    {intro && <p class="mt-6 max-w-2xl text-lg leading-relaxed text-muted sm:text-xl">{intro}</p>}
   </div>
 </section>

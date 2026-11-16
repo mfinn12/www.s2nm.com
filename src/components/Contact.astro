@@ -1,42 +1,38 @@
 ---
-import { site } from '../data/site';
+import { site, socials } from '../data/site';
+
+const linkedin = socials.find((s) => s.label === 'LinkedIn');
 ---
 
-<section id="contact" class="scroll-mt-20 bg-brand text-white">
-  <div class="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 md:grid-cols-2">
+<section id="contact" class="scroll-mt-20 px-4 py-20 sm:px-8 sm:py-28">
+  <div
+    class="mx-auto grid max-w-6xl gap-10 rounded-3xl border border-line-strong bg-panel p-8 sm:p-14 md:grid-cols-2 md:items-center md:gap-16"
+  >
     <div>
-      <h2 class="font-display text-3xl font-bold">Get started now</h2>
-      <p class="mt-4 text-lg text-white/85">
-        Ready to solidify your marketing strategy and grow your business? Enter your name and business email address
-        and we'll be back to you shortly to schedule a conversation.
+      <h2 class="font-display text-4xl font-semibold tracking-[-0.03em] sm:text-5xl">Get started now</h2>
+      <p class="mt-5 text-lg leading-relaxed text-muted">
+        Ready to solidify your marketing strategy and grow your business? Send us an email and we'll be back to you
+        shortly to schedule a conversation.
       </p>
     </div>
-    <form action={site.formAction} method="POST" class="space-y-4">
-      <input type="hidden" name="_subject" value="Contact Us" />
-      <input type="hidden" name="_next" value={new URL('/thank-you/', Astro.site).href} />
-      <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
-      <label class="block">
-        <span class="text-sm font-medium">First and last name</span>
-        <input
-          name="name"
-          required
-          autocomplete="name"
-          class="mt-1 w-full rounded-md border-0 bg-white px-3 py-2 text-slate-900 focus:ring-2 focus:ring-brand-soft focus:outline-none"
-        />
-      </label>
-      <label class="block">
-        <span class="text-sm font-medium">Business email address</span>
-        <input
-          type="email"
-          name="_replyto"
-          required
-          autocomplete="email"
-          class="mt-1 w-full rounded-md border-0 bg-white px-3 py-2 text-slate-900 focus:ring-2 focus:ring-brand-soft focus:outline-none"
-        />
-      </label>
-      <button type="submit" class="rounded-full bg-white px-6 py-2.5 font-semibold text-brand hover:bg-white/90">
-        Contact us
-      </button>
-    </form>
+    <div class="flex flex-col gap-4 md:items-start">
+      <a
+        href={`mailto:${site.email}?subject=${encodeURIComponent('Contact Us')}`}
+        class="inline-flex min-h-13 items-center justify-center rounded-lg bg-accent px-6 font-semibold text-ink transition-colors hover:bg-accent-hover focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:outline-none"
+      >
+        Email {site.email} →
+      </a>
+      {
+        linkedin && (
+          <a
+            href={linkedin.href}
+            rel="noopener"
+            class="inline-flex min-h-13 items-center justify-center rounded-lg border border-line-strong px-6 font-medium transition-colors hover:border-subtle"
+          >
+            Message us on LinkedIn
+          </a>
+        )
+      }
+    </div>
   </div>
 </section>
