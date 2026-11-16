@@ -8,8 +8,9 @@ export const site = {
   description:
     'signal | noise marketing provides B2B marketing advisory services to growing technology companies.',
   headline: 'More signal, less noise',
-  // Contact form posts here. Check that this endpoint still works before launch.
-  formAction: 'https://formspree.io/info@s2nm.com',
+  // Address for the "Get started" section. The contact form was removed; a
+  // GitHub issue tracks adding one back.
+  email: 'info@s2nm.com',
 };
 
 export const nav = [
