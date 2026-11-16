@@ -1,0 +1,32 @@
+# Builds the site and deploys it to the live Firebase Hosting channel
+# (www-s2nm-com) whenever changes land on master.
+
+name: Deploy to Firebase Hosting on merge
+on:
+  push:
+    branches:
+      - master
+permissions:
+  checks: write
+  contents: read
+# Never run two live deploys at once; a newer push waits for the current one.
+concurrency:
+  group: firebase-live-deploy
+  cancel-in-progress: false
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # Astro needs Node.js 22.23.4 or later
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci && npm run build
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_WWW_S2NM_COM }}
+          channelId: live
+          projectId: www-s2nm-com
