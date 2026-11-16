@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Contact from '../components/Contact.astro';
+import { activities, funnelStages, metrics, strategy } from '../data/site';
+
+const cell = 'border-t border-slate-200 p-3 align-top dark:border-slate-800';
+---
+
+<BaseLayout title="Activities" description="Tactical B2B marketing activities aligned to each stage of the demand funnel.">
+  <PageHeader
+    title="Activities"
+    intro="At signal | noise marketing, we think of each tactical marketing activity as part of an overall plan that depends on deep functional expertise and is aligned to the demand funnel."
+  />
+
+  <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+    <div class="overflow-x-auto">
+      <table class="w-full min-w-[44rem] text-left text-sm">
+        <thead>
+          <tr>
+            <th class="p-3"><span class="sr-only">Activity group</span></th>
+            {funnelStages.map((s) => <th class="p-3 font-display text-base text-brand dark:text-brand-soft">{s}</th>)}
+          </tr>
+        </thead>
+        <tbody>
+          {
+            activities.map((row) => (
+              <tr>
+                <th scope="row" class={`${cell} font-semibold`}>{row.group}</th>
+                {row.stages.map((items) => (
+                  <td class={cell}>
+                    <ul class="space-y-1 text-slate-700 dark:text-slate-300">{items.map((i) => <li>{i}</li>)}</ul>
+                  </td>
+                ))}
+              </tr>
+            ))
+          }
+          <tr>
+            <th scope="row" class={`${cell} font-semibold`}>Strategy</th>
+            <td colspan="4" class={`${cell} text-slate-700 dark:text-slate-300`}>{strategy}</td>
+          </tr>
+          <tr class="bg-slate-50 dark:bg-slate-900/40">
+            <th scope="row" class={`${cell} font-semibold`}>Metrics</th>
+            {
+              metrics.map((items) => (
+                <td class={cell}>
+                  <ul class="space-y-1 text-slate-700 dark:text-slate-300">{items.map((i) => <li>{i}</li>)}</ul>
+                </td>
+              ))
+            }
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <Contact />
+</BaseLayout>

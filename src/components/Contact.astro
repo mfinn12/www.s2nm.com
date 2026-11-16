@@ -1,0 +1,42 @@
+---
+import { site } from '../data/site';
+---
+
+<section id="contact" class="scroll-mt-20 bg-brand text-white">
+  <div class="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 md:grid-cols-2">
+    <div>
+      <h2 class="font-display text-3xl font-bold">Get started now</h2>
+      <p class="mt-4 text-lg text-white/85">
+        Ready to solidify your marketing strategy and grow your business? Enter your name and business email address
+        and we'll be back to you shortly to schedule a conversation.
+      </p>
+    </div>
+    <form action={site.formAction} method="POST" class="space-y-4">
+      <input type="hidden" name="_subject" value="Contact Us" />
+      <input type="hidden" name="_next" value={new URL('/thank-you/', Astro.site).href} />
+      <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
+      <label class="block">
+        <span class="text-sm font-medium">First and last name</span>
+        <input
+          name="name"
+          required
+          autocomplete="name"
+          class="mt-1 w-full rounded-md border-0 bg-white px-3 py-2 text-slate-900 focus:ring-2 focus:ring-brand-soft focus:outline-none"
+        />
+      </label>
+      <label class="block">
+        <span class="text-sm font-medium">Business email address</span>
+        <input
+          type="email"
+          name="_replyto"
+          required
+          autocomplete="email"
+          class="mt-1 w-full rounded-md border-0 bg-white px-3 py-2 text-slate-900 focus:ring-2 focus:ring-brand-soft focus:outline-none"
+        />
+      </label>
+      <button type="submit" class="rounded-full bg-white px-6 py-2.5 font-semibold text-brand hover:bg-white/90">
+        Contact us
+      </button>
+    </form>
+  </div>
+</section>
