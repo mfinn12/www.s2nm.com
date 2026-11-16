@@ -1,14 +1,36 @@
 @import "tailwindcss";
 
+/*
+ * Theme: "Modern tech" (direction B). The site is dark-only, so these tokens
+ * are the whole palette — there are no dark: variants.
+ */
 @theme {
-  --font-sans: "Hind", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Montserrat", ui-sans-serif, system-ui, sans-serif;
-  /* Navy from the signal | noise logo, plus a lighter tint for dark mode */
-  --color-brand: #0f1180;
-  --color-brand-soft: #8b8ff0;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Surfaces, darkest first */
+  --color-ink: #0a0c10;
+  --color-ink-raised: #0d1015;
+  --color-panel: #11141a;
+
+  /* Borders */
+  --color-line: #222733;
+  --color-line-strong: #2c3240;
+
+  /* Text */
+  --color-fg: #e7e9ee;
+  --color-muted: #b4bac6;
+  --color-subtle: #8a92a1;
+  --color-dim: #5c6372;
+
+  /* Accent: the violet tint of the signal | noise navy */
+  --color-accent: #8b8ff0;
+  --color-accent-hover: #a9acf5;
 }
 
 html {
+  color-scheme: dark;
   scroll-behavior: smooth;
 }
 

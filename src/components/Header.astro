@@ -3,24 +3,24 @@ import { nav } from '../data/site';
 
 const path = Astro.url.pathname;
 const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+// "Home" is the wordmark, so the inline menu lists the other pages.
+const links = nav.filter((l) => l.href !== '/');
 ---
 
-<header
-  class="sticky top-0 z-20 border-b border-slate-200/70 bg-white/85 backdrop-blur dark:border-slate-800/70 dark:bg-[#0b0b14]/85"
->
-  <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
-    <a href="/" class="rounded bg-white px-1 py-0.5">
-      <img src="/images/s2nm-logo.png" width="120" height="57" alt="signal | noise marketing" />
+<header class="sticky top-0 z-20 border-b border-line bg-ink/85 backdrop-blur">
+  <nav class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-8">
+    <a href="/" class="font-display text-xl font-bold tracking-tight text-fg">
+      signal <span class="text-accent">|</span> noise
     </a>
 
-    <ul class="hidden gap-8 text-sm font-medium sm:flex">
+    <ul class="hidden items-center gap-7 text-[15px] sm:flex">
       {
-        nav.map((link) => (
+        links.map((link) => (
           <li>
             <a
               href={link.href}
               aria-current={isCurrent(link.href) ? 'page' : undefined}
-              class="text-slate-600 transition-colors hover:text-brand aria-[current=page]:text-brand dark:text-slate-400 dark:hover:text-brand-soft dark:aria-[current=page]:text-brand-soft"
+              class="text-muted transition-colors hover:text-fg aria-[current=page]:text-fg"
             >
               {link.label}
             </a>
@@ -28,21 +28,26 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWi
         ))
       }
       <li>
-        <a href="/#contact" class="rounded-full bg-brand px-4 py-1.5 text-white hover:opacity-90 dark:bg-brand-soft dark:text-slate-950">Contact</a>
+        <a
+          href="/#contact"
+          class="inline-flex min-h-11 items-center rounded-lg bg-accent px-5 font-semibold text-ink transition-colors hover:bg-accent-hover"
+        >
+          Book a call
+        </a>
       </li>
     </ul>
 
     <details class="relative sm:hidden">
-      <summary class="cursor-pointer list-none rounded-md px-2 py-1 text-sm font-medium [&::-webkit-details-marker]:hidden">
+      <summary
+        class="flex min-h-11 cursor-pointer list-none items-center rounded-lg border border-line-strong px-4 text-sm font-medium [&::-webkit-details-marker]:hidden"
+      >
         Menu
       </summary>
-      <ul
-        class="absolute right-0 mt-2 w-44 rounded-lg border border-slate-200 bg-white p-2 shadow-lg dark:border-slate-800 dark:bg-slate-900"
-      >
+      <ul class="absolute right-0 mt-2 w-48 rounded-xl border border-line-strong bg-panel p-2 shadow-2xl">
         {
-          [...nav, { label: 'Contact', href: '/#contact' }].map((link) => (
+          [...nav, { label: 'Book a call', href: '/#contact' }].map((link) => (
             <li>
-              <a href={link.href} class="block rounded px-3 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-800">
+              <a href={link.href} class="block rounded-lg px-3 py-2.5 text-sm text-muted hover:bg-ink hover:text-fg">
                 {link.label}
               </a>
             </li>

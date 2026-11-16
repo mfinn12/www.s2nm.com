@@ -39,13 +39,12 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     }
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0b0b14" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#0a0c10" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600&family=Montserrat:wght@600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
 
@@ -63,7 +62,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       })(window, document, 'script', 'dataLayer', 'GTM-MJRPG5H');
     </script>
   </head>
-  <body class="flex min-h-screen flex-col bg-white font-sans text-slate-800 antialiased dark:bg-[#0b0b14] dark:text-slate-200">
+  <body class="flex min-h-screen flex-col bg-ink font-sans text-fg antialiased selection:bg-accent selection:text-ink">
     <noscript>
       <iframe
         src="https://www.googletagmanager.com/ns.html?id=GTM-MJRPG5H"

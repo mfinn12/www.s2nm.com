@@ -4,47 +4,55 @@ import PageHeader from '../components/PageHeader.astro';
 import Contact from '../components/Contact.astro';
 import { activities, funnelStages, metrics, strategy } from '../data/site';
 
-const cell = 'border-t border-slate-200 p-3 align-top dark:border-slate-800';
+const cell = 'border-t border-line p-4 align-top';
 ---
 
 <BaseLayout title="Activities" description="Tactical B2B marketing activities aligned to each stage of the demand funnel.">
   <PageHeader
     title="Activities"
+    label="Full-funnel activities"
     intro="At signal | noise marketing, we think of each tactical marketing activity as part of an overall plan that depends on deep functional expertise and is aligned to the demand funnel."
   />
 
-  <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-    <div class="overflow-x-auto">
-      <table class="w-full min-w-[44rem] text-left text-sm">
+  <section class="mx-auto max-w-6xl px-4 pt-16 sm:px-8">
+    <div class="overflow-x-auto rounded-2xl border border-line bg-ink-raised">
+      <table class="w-full min-w-[46rem] text-left text-sm">
         <thead>
           <tr>
-            <th class="p-3"><span class="sr-only">Activity group</span></th>
-            {funnelStages.map((s) => <th class="p-3 font-display text-base text-brand dark:text-brand-soft">{s}</th>)}
+            <th class="p-4"><span class="sr-only">Activity group</span></th>
+            {
+              funnelStages.map((s, i) => (
+                <th class="p-4">
+                  <span class="block font-mono text-xs font-normal text-accent">{String(i + 1).padStart(2, '0')}</span>
+                  <span class="mt-1 block font-display text-base font-semibold">{s}</span>
+                </th>
+              ))
+            }
           </tr>
         </thead>
         <tbody>
           {
             activities.map((row) => (
               <tr>
-                <th scope="row" class={`${cell} font-semibold`}>{row.group}</th>
+                <th scope="row" class={`${cell} font-display font-semibold`}>{row.group}</th>
                 {row.stages.map((items) => (
                   <td class={cell}>
-                    <ul class="space-y-1 text-slate-700 dark:text-slate-300">{items.map((i) => <li>{i}</li>)}</ul>
+                    <ul class="space-y-1.5 text-muted">{items.map((i) => <li>{i}</li>)}</ul>
                   </td>
                 ))}
               </tr>
             ))
           }
           <tr>
-            <th scope="row" class={`${cell} font-semibold`}>Strategy</th>
-            <td colspan="4" class={`${cell} text-slate-700 dark:text-slate-300`}>{strategy}</td>
+            <th scope="row" class={`${cell} font-display font-semibold`}>Strategy</th>
+            <td colspan="4" class={`${cell} text-muted`}>{strategy}</td>
           </tr>
-          <tr class="bg-slate-50 dark:bg-slate-900/40">
-            <th scope="row" class={`${cell} font-semibold`}>Metrics</th>
+          <tr class="bg-panel">
+            <th scope="row" class={`${cell} font-display font-semibold`}>Metrics</th>
             {
               metrics.map((items) => (
                 <td class={cell}>
-                  <ul class="space-y-1 text-slate-700 dark:text-slate-300">{items.map((i) => <li>{i}</li>)}</ul>
+                  <ul class="space-y-1.5 font-mono text-xs text-subtle">{items.map((i) => <li>{i}</li>)}</ul>
                 </td>
               ))
             }

@@ -3,17 +3,19 @@ import { nav, site, socials } from '../data/site';
 const year = new Date().getFullYear();
 ---
 
-<footer class="border-t border-slate-200 dark:border-slate-800">
-  <div class="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-8 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:px-6 dark:text-slate-400">
+<footer class="border-t border-line">
+  <div
+    class="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-8 font-mono text-[13px] text-subtle sm:flex-row sm:items-center sm:justify-between sm:px-8"
+  >
     <p>&copy; {year} {site.legalName}</p>
     <ul class="flex flex-wrap gap-x-6 gap-y-2">
-      {nav.map((l) => <li><a href={l.href} class="hover:text-brand dark:hover:text-brand-soft">{l.label}</a></li>)}
+      {nav.map((l) => <li><a href={l.href} class="hover:text-fg">{l.label}</a></li>)}
     </ul>
     <ul class="flex flex-wrap gap-x-6 gap-y-2">
       {
         socials.map((s) => (
           <li>
-            <a href={s.href} rel="noopener" class="hover:text-brand dark:hover:text-brand-soft">{s.label}</a>
+            <a href={s.href} rel="noopener" class="hover:text-fg">{s.label}</a>
           </li>
         ))
       }

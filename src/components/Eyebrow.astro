@@ -1,0 +1,9 @@
+---
+// Small monospace section label, e.g. "// Functional expertise".
+interface Props {
+  class?: string;
+}
+const { class: className = '' } = Astro.props;
+---
+
+<p class:list={['font-mono text-[13px] text-subtle', className]}>// <slot /></p>
